@@ -1,9 +1,11 @@
 let screen = document.querySelector("canvas");
 let pincel = screen.getContext("2d");
 
-let radius_js = 10;
+let radius_js = 8;
 let xRandom;
 let yRandom;
+let actualWidth = screen.width;
+let actualHeight = screen.height;
 
 function drawCircle(x, y, radius, color){
     pincel.fillStyle = color;
@@ -20,21 +22,21 @@ function getRandomNumber(min, max)
 }
 
 function targetDesing(x, y){
-    drawCircle(x, y, radius_js + 20, "red");
-    drawCircle(x, y, radius_js + 10, "white");
+    drawCircle(x, y, radius_js + 2*radius_js, "red");
+    drawCircle(x, y, radius_js + radius_js, "white");
     drawCircle(x, y, radius_js, "red");
 }
 
 function clearScreen(){
-    pincel.clearRect(0,0,600,400);
+    pincel.clearRect(0,0,actualWidth,actualHeight);
 }
 
 let x = 0;
 
 function updateScreen(){
     clearScreen();
-    xRandom = getRandomNumber(30,570);
-    yRandom = getRandomNumber(30,370);
+    xRandom = getRandomNumber(3*radius_js,actualWidth-3*radius_js);
+    yRandom = getRandomNumber(3*radius_js,actualHeight-3*radius_js);
     targetDesing(xRandom, yRandom);
     x++;
 }
